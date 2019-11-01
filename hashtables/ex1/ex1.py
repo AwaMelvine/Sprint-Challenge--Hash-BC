@@ -15,18 +15,18 @@ def get_indices_of_item_weights(weights, length, limit):
     index = 0
 
     for item in weights:
-        sum_weights = limit - item
-        existing_key = hash_table_retrieve(ht, item)
+        weight_diff = limit - item
+        existing_index = hash_table_retrieve(ht, item)
 
-        if (existing_key == 0 or existing_key) and (limit - item == sum_weights):
-            return (index, existing_key)
+        if existing_index == 0 or existing_index:
+            return (index, existing_index)
         hash_table_insert(ht, item, index)
         index += 1
 
     for item in weights:
-        sum_weights = limit - item
+        weight_diff = limit - item
 
-        weight_index = hash_table_retrieve(ht, sum_weights)
+        weight_index = hash_table_retrieve(ht, weight_diff)
 
         if weight_index is not None:
             current_index = hash_table_retrieve(ht, item)
