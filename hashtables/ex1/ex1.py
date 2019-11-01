@@ -12,9 +12,28 @@ def get_indices_of_item_weights(weights, length, limit):
     """
     YOUR CODE HERE
     """
+    index = 0
 
-    return None
+    for item in weights:
+        weight_diff = limit - item
+        existing_index = hash_table_retrieve(ht, item)
 
+        if existing_index == 0 or existing_index:
+            return (index, existing_index)
+        hash_table_insert(ht, item, index)
+        index += 1
+
+    for item in weights:
+        weight_diff = limit - item
+
+        weight_index = hash_table_retrieve(ht, weight_diff)
+
+        if weight_index is not None:
+            current_index = hash_table_retrieve(ht, item)
+            if current_index > weight_index:
+                return (current_index, weight_index)
+            else:
+                return (weight_index, current_index)
 
 def print_answer(answer):
     if answer is not None:
